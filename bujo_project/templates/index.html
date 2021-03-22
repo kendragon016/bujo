@@ -1,0 +1,29 @@
+{%extends 'base.html' %}
+{% load static %}
+
+
+{% block title %}Index Card{% endblock %}
+
+{% block styles %}
+<link rel="stylesheet" href="{% static 'css/styles.css' %}" type="text/css">
+{% endblock %}
+
+{% block content %}
+    {{ form.non_field_errors }}
+    {% for field in form %}
+        {% if field.errors %} 
+            <p>{{ field.label }} has the following errors:</p> 
+            <ul> 
+            {% for error in field.errors %} 
+            <li>{{ error }}</li>
+            {% endfor %}
+            </ul>
+        {% endif %}
+    {% endfor %}
+    <form action="/index_card/" method="post">
+    	{% csrf_token %}
+    	{{ form }}
+    	<input type="submit" value="Submit">
+    </form>
+{% endblock %}
+    	
