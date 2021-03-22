@@ -1,0 +1,28 @@
+{%extends 'base.html' %}
+{% load static %}
+
+
+{% block title %}Your Bujo{% endblock %}
+
+{% block styles %}
+<link rel="stylesheet" href="{% static 'css/styles.css' %}" type="text/css">
+{% endblock %}
+
+{% block content %}
+<h1>
+    Your Bullet Journal
+</h1>
+
+{% if form %}
+    <h2>
+        Hello! What is your name?
+    </h2>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input type="submit" value="Submit">
+    </form>
+{% else %}
+    <p>Hello, {{ output }}! Today is going to be a great day!</p>
+{% endif %}
+{% endblock %}

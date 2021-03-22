@@ -1,27 +1,35 @@
 from django.shortcuts import render
 from django.http import HttpResponse
-from django.views import View
 
-from .forms import IndexCardForm
-
-
-class HomePageView(View):
-	def get(self, request):
-		return HttpResponse('Hello World! This came from the index view.')
+from .forms import UsernameForm
 
 
-def index_card_view(request):
-	if request.method == 'POST':
-		form = IndexCardForm(request.POST)
-		if form.is_valid():
-			return HttpResponse(
-				'You are from {} section {}'.format(
-					form.cleaned_data['name'],
-					form.cleaned_data['section']
-				)
-			)
-		else:
-			render(request, "index.html", {'form': form})
-	else:
-	    form = IndexCardForm()
-	return render(request, "index.html", {'form': form})
+def home(request):
+    if request.method == 'POST':
+        form = UsernameForm(request.POST)
+        if form.is_valid():
+			# return HttpResponse(
+			# 	'Hello, {}! Today is going to be a great day!'.format(
+			# 		form.cleaned_data['name'],
+			# 	)
+			# )
+
+            greeting = form.cleaned_data['name']
+            return render(request, "home.html", {'output': greeting})
+        else:
+            render(request, "home.html", {'form': form})
+    else:
+        form = UsernameForm()
+    return render(request, "home.html", {'form': form})
+
+def profile(request):
+    return render(request, 'profile.html')
+
+def key(request):
+    return render(request, 'key.html')
+
+def this_week(request):
+    return render(request, 'this_week.html')
+
+def today(request):
+    return render(request, 'today.html')

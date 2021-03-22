@@ -1,0 +1,36 @@
+{%extends 'base.html' %}
+{% load static %}
+
+
+{% block title %}This Week{% endblock %}
+
+{% block styles %}
+<link rel="stylesheet" href="{% static 'css/styles.css' %}" type="text/css">
+{% endblock %}
+
+{% block content %}
+<h1>
+    This Week
+</h1>
+
+<h2>03.01.MON - 03.07.SUN</h2>
+
+<img src="{% static 'images/dot.jpg' %}" alt="User's Picture">
+<p>workout</p>
+
+<img src="{% static 'images/dot.jpg' %}" alt="User's Picture">
+<p>buy coffee and milk</p>
+
+<img src="{% static 'images/dot.jpg' %}" alt="User's Picture">
+<p>laundry</p>
+
+<img src="{% static 'images/circle.jpg' %}" alt="User's Picture">
+<p>3, 2PM PAASCU meeting</p>
+
+<img src="{% static 'images/dash.jpg' %}" alt="User's Picture">
+<p>30g of coffee is too strong</p>
+
+<img src="{% static 'images/dot.jpg' %}" alt="User's Picture">
+<p>review ethics</p>
+
+{% endblock %}

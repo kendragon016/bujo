@@ -1,0 +1,30 @@
+{%extends 'base.html' %}
+{% load static %}
+
+
+{% block title %}Key{% endblock %}
+
+{% block styles %}
+<link rel="stylesheet" href="{% static 'css/styles.css' %}" type="text/css">
+{% endblock %}
+
+{% block content %}
+<h1>
+    Key
+</h1>
+
+<img src="{% static 'images/dot.jpg' %}" alt="User's Picture">
+<p>Tasks: Things you have to do</p>
+
+<img src="{% static 'images/dash.jpg' %}" alt="User's Picture">
+<p>Notes: things you don't want to forget</p>
+
+<img src="{% static 'images/circle.jpg' %}" alt="User's Picture">
+<p>Events: Noteworthy moments in time</p>
+
+<img src="{% static 'images/dot.jpg' %}" alt="User's Picture">
+<p>Task incomplete</p>
+
+<img src="{% static 'images/cross.jpg' %}" alt="User's Picture">
+<p>Task complete</p>
+{% endblock %}

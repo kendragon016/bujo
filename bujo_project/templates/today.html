@@ -1,0 +1,32 @@
+{%extends 'base.html' %}
+{% load static %}
+
+
+{% block title %}Today{% endblock %}
+
+{% block styles %}
+<link rel="stylesheet" href="{% static 'css/styles.css' %}" type="text/css">
+{% endblock %}
+
+{% block content %}
+<h1>
+    Today
+</h1>
+
+<h2>03.02 TUE</h2>
+
+<img src="{% static 'images/dot.jpg' %}" alt="User's Picture">
+<p>laundry bedsheets</p>
+
+<img src="{% static 'images/dot.jpg' %}" alt="User's Picture">
+<p>review ethics protocol & questionnaires</p>
+
+<img src="{% static 'images/circle.jpg' %}" alt="User's Picture">
+<p>7PM, Nigma vs Alliance</p>
+
+<img src="{% static 'images/dash.jpg' %}" alt="User's Picture">
+<p>almost out of coffee</p>
+
+<img src="{% static 'images/dot.jpg' %}" alt="User's Picture">
+<p>email backlog</p>
+{% endblock %}

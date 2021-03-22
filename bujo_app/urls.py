@@ -1,8 +1,10 @@
-from django.urls import path 
+from django.urls import path
+from . import views
 
-from .views import HomePageView, index_card_view
-
-urlpatterns = [ 
-    path('', HomePageView.as_view(), name='index'),
-    path('index_card/', index_card_view, name="index_card")
-] 
+urlpatterns = [
+    path('home', views.home, name='home'),
+    path('profile', views.profile, name='profile'),
+    path('key', views.key, name='key'),
+    path('this_week', views.this_week, name='this_week'),
+    path('today', views.today, name='today'),
+]

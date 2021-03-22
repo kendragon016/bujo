@@ -1,0 +1,21 @@
+{%extends 'base.html' %}
+{% load static %}
+
+
+{% block title %}Profile{% endblock %}
+
+{% block styles %}
+<link rel="stylesheet" href="{% static 'css/styles.css' %}" type="text/css">
+{% endblock %}
+
+{% block content %}
+<h1>
+    Kendra
+</h1>
+
+<img src="{% static 'images/userpic.jpg' %}" alt="User's Picture">
+
+<h2>
+    bio
+</h2>
+{% endblock %}
