@@ -4,29 +4,43 @@
 
 {% block title %}Today{% endblock %}
 
-{% block styles %}
-<link rel="stylesheet" href="{% static 'css/styles.css' %}" type="text/css">
-{% endblock %}
-
 {% block content %}
-<h1>
-    Today
-</h1>
+<div class="date_container">
+    <h1>
+        Today
+    </h1>
 
-<h2>03.02 TUE</h2>
+    <h1 class="date">
+        03.02 TUE
+    </h1>
+</div>
 
-<img src="{% static 'images/dot.jpg' %}" alt="User's Picture">
-<p>laundry bedsheets</p>
+<div class="bujo_entry">
+    <img src="{% static 'images/dot.png' %}" alt="User's Picture">
+    <div><p>laundry bedsheets</p></div>
+</div>
 
-<img src="{% static 'images/dot.jpg' %}" alt="User's Picture">
-<p>review ethics protocol & questionnaires</p>
+<div class="bujo_entry">
+    <img src="{% static 'images/dot.png' %}" alt="User's Picture">
+    <div><p>review ethics protocol & questionnaires</p></div>
+</div>
 
-<img src="{% static 'images/circle.jpg' %}" alt="User's Picture">
-<p>7PM, Nigma vs Alliance</p>
+<div class="bujo_entry">
+    <img src="{% static 'images/circle.png' %}" alt="User's Picture">
+    <div class="bujo_entry_details_container">
+        <div class="entry_title"><p>Nigma vs Alliance</p></div>
+        <div class="entry_details"><p></p></div>
+        <div class="entry_details"><p>7PM</p></div>
+    </div>
+</div>
 
-<img src="{% static 'images/dash.jpg' %}" alt="User's Picture">
-<p>almost out of coffee</p>
+<div class="bujo_entry">
+    <img src="{% static 'images/dash.png' %}" alt="User's Picture">
+    <div><p>almost out of coffee</p></div>
+</div>
 
-<img src="{% static 'images/dot.jpg' %}" alt="User's Picture">
-<p>email backlog</p>
+<div class="bujo_entry">
+    <img src="{% static 'images/dot.png' %}" alt="User's Picture">
+    <div><p>email backlog</p></div>
+</div>
 {% endblock %}

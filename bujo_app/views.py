@@ -8,14 +8,8 @@ def home(request):
     if request.method == 'POST':
         form = UsernameForm(request.POST)
         if form.is_valid():
-			# return HttpResponse(
-			# 	'Hello, {}! Today is going to be a great day!'.format(
-			# 		form.cleaned_data['name'],
-			# 	)
-			# )
-
-            greeting = form.cleaned_data['name']
-            return render(request, "home.html", {'output': greeting})
+            name = form.cleaned_data['name']
+            return render(request, "home.html", {'output': name})
         else:
             render(request, "home.html", {'form': form})
     else:

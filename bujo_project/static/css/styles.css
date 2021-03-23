@@ -1,0 +1,137 @@
+html{
+    background: #181820 ;
+    padding-left:10vw;
+    padding-right: 10vw;
+}
+
+@font-face {
+    font-family: 'montserrat';
+    src: local('montserrat'),
+         url('../static/fonts/Montserrat-Medium.ttf') format("truetype");
+  }
+
+nav{
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 80px;
+    background-color: #21212B;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+a{
+    text-decoration: none;
+    color: #D9D9DA;
+    padding: 2vw;
+    font-family: "montserrat";
+    font-size: 16px;
+}
+
+h1, h2, h3, p{
+    font-family: "montserrat";
+    color: #D9D9DA;
+}
+
+h1{
+    font-weight: bold;
+    font-size: 32px;
+    padding-top: 16vh;
+}
+
+h2{
+    font-weight: bold;
+    font-size: 48px;
+    text-align: center;
+    padding-top: 15vh;
+}
+
+h3{
+    font-size: 24px;
+}
+
+p{
+    font-size: 16px;
+    line-height: 24px;
+}
+
+form{
+    text-align: center;
+}
+
+.profile_pic{
+    width: 27%;
+    border-radius: 8px;
+}
+.profile_container{
+    display: flex;
+    padding-top: 3vh;
+}
+
+.bio_container{
+    padding-left: 8vw;
+    margin: auto;
+}
+
+.all_keys_container{
+    background-color: #21212B;
+    border-radius: 8px;
+    width: 80vw;
+    height: 60vh;
+    display: flex;
+    flex-direction: column;
+    align-content: space-between;
+}
+
+.single_key_container, .bujo_entry{
+    display: flex;
+    padding-left: 6vw;
+    margin-top: auto;
+    margin-bottom: auto;
+}
+
+.single_key_container img, .bujo_entry img{
+    width: 25px;
+    height:auto;
+    align-self: center;
+}
+
+.single_key_container p, .bujo_entry p{
+    font-size: 20px;
+    padding-left: 2vw;
+}
+
+.date_container{
+    width: 80vw;
+    display: flex;
+    justify-content: space-between;
+}
+
+.date{
+    font-weight: normal;
+    text-align: right;
+}
+
+.bujo_entry{
+    background-color: #21212B;
+    width: 74vw;
+    border-radius: 8px;
+    margin-bottom: 2vh;
+}
+
+.bujo_entry_details_container{
+    width:65vw;
+    display: flex;
+    justify-content: space-between;
+}
+
+.entry_title{
+    flex: 6;
+}
+
+.entry_details{
+    flex: 1;
+}
+

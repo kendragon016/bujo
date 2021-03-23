@@ -4,10 +4,6 @@
 
 {% block title %}Your Bujo{% endblock %}
 
-{% block styles %}
-<link rel="stylesheet" href="{% static 'css/styles.css' %}" type="text/css">
-{% endblock %}
-
 {% block content %}
 <h1>
     Your Bullet Journal
@@ -23,6 +19,8 @@
         <input type="submit" value="Submit">
     </form>
 {% else %}
-    <p>Hello, {{ output }}! Today is going to be a great day!</p>
+    <h2>
+        Hello, {{ output }}! Today is going to be a great day!
+    </h2>
 {% endif %}
 {% endblock %}

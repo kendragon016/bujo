@@ -4,33 +4,49 @@
 
 {% block title %}This Week{% endblock %}
 
-{% block styles %}
-<link rel="stylesheet" href="{% static 'css/styles.css' %}" type="text/css">
-{% endblock %}
-
 {% block content %}
-<h1>
-    This Week
-</h1>
+<div class="date_container">
+    <h1>
+        This Week
+    </h1>
 
-<h2>03.01.MON - 03.07.SUN</h2>
+    <h1 class="date">
+        03.01.MON - 03.07.SUN
+    </h1>
+</div>
 
-<img src="{% static 'images/dot.jpg' %}" alt="User's Picture">
-<p>workout</p>
+<div class="bujo_entry">
+    <img src="{% static 'images/dot.png' %}" alt="User's Picture">
+    <div><p>workout</p></div>
+</div>
 
-<img src="{% static 'images/dot.jpg' %}" alt="User's Picture">
-<p>buy coffee and milk</p>
+<div class="bujo_entry">
+    <img src="{% static 'images/dot.png' %}" alt="User's Picture">
+    <div><p>buy coffee and milk</p></div>
+</div>
 
-<img src="{% static 'images/dot.jpg' %}" alt="User's Picture">
-<p>laundry</p>
+<div class="bujo_entry">
+    <img src="{% static 'images/dot.png' %}" alt="User's Picture">
+    <div><p>laundry</p></div>
+</div>
 
-<img src="{% static 'images/circle.jpg' %}" alt="User's Picture">
-<p>3, 2PM PAASCU meeting</p>
+<div class="bujo_entry">
+    <img src="{% static 'images/circle.png' %}" alt="User's Picture">
+    <div class="bujo_entry_details_container">
+        <div class="entry_title"><p>PAASCU meeting</p></div>
+        <div class="entry_details"><p>03.03</p></div>
+        <div class="entry_details"><p>2PM</p></div>
+    </div>
+</div>
 
-<img src="{% static 'images/dash.jpg' %}" alt="User's Picture">
-<p>30g of coffee is too strong</p>
+<div class="bujo_entry">
+    <img src="{% static 'images/dash.png' %}" alt="User's Picture">
+    <div><p>30g of coffee is too strong</p></div>
+</div>
 
-<img src="{% static 'images/dot.jpg' %}" alt="User's Picture">
-<p>review ethics</p>
+<div class="bujo_entry">
+    <img src="{% static 'images/dot.png' %}" alt="User's Picture">
+    <div><p>review ethics</p></div>
+</div>
 
 {% endblock %}

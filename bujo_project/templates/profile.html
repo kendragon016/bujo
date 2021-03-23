@@ -4,18 +4,18 @@
 
 {% block title %}Profile{% endblock %}
 
-{% block styles %}
-<link rel="stylesheet" href="{% static 'css/styles.css' %}" type="text/css">
-{% endblock %}
-
 {% block content %}
 <h1>
-    Kendra
+    Profile
 </h1>
 
-<img src="{% static 'images/userpic.jpg' %}" alt="User's Picture">
+<div class="profile_container">
+    <img class="profile_pic" src="{% static 'images/userpic.png' %}" alt="User's Picture">
 
-<h2>
-    bio
-</h2>
-{% endblock %}
+    <div class='bio_container'>
+        <h3>Kendra</h3>
+
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+    </div>
+</div>
+s{% endblock %}
