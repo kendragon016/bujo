@@ -9,15 +9,17 @@
     Your Bullet Journal
 </h1>
 
-{% if form %}
+{% if form  %}
     <h2>
         Hello! What is your name?
     </h2>
-    <form method="post">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <input type="submit" value="Submit">
-    </form>
+    <div class="form_container">
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <input type="submit" value="Submit">
+        </form>
+    </div>
 {% else %}
     <h2>
         Hello, {{ output }}! Today is going to be a great day!

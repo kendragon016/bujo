@@ -61,6 +61,17 @@ form{
     text-align: center;
 }
 
+form input{
+    position:absolute;
+    right:35vw;
+    height: 2.5vw;
+}
+
+#id_name{
+    width: 30vw;
+    height: 2vw;
+}
+
 .profile_pic{
     width: 27%;
     border-radius: 8px;
