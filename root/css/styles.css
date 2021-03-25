@@ -1,12 +1,14 @@
 html{
-    background: #181820 ;
+    background: #181820;
+    padding-left:10vw;
+    padding-right: 10vw;
 }
 
 @font-face {
     font-family: 'montserrat';
     src: local('montserrat'),
          url('../static/fonts/Montserrat-Medium.ttf') format("truetype");
-  }
+}
 
 nav{
     position: fixed;
@@ -37,7 +39,6 @@ h1{
     font-weight: bold;
     font-size: 32px;
     padding-top: 16vh;
-    padding-left: 5vw;
 }
 
 h2{
@@ -51,8 +52,103 @@ h3{
     font-size: 24px;
 }
 
-.profilepic{
-    padding-left: 5vw;
-    padding-top: 3vh;
+p{
+    font-size: 16px;
+    line-height: 24px;
+}
+
+form{
+    text-align: center;
+}
+
+form input{
+    position:absolute;
+    right:35vw;
+    height: 2.8vw;
+}
+
+#id_name{
+    width: 30vw;
+    height: 2vw;
+}
+
+.profile_pic{
     width: 27%;
+    height: auto;
+    border-radius: 8px;
+}
+
+.profile_container{
+    display: flex;
+    padding-top: 3vh;
+}
+
+.bio_container{
+    padding-left: 8vw;
+    margin: auto;
+}
+
+.all_keys_container{
+    position: fixed;
+    background-color: #21212B;
+    border-radius: 8px;
+    width: 80vw;
+    height: 60vh;
+    display: flex;
+    flex-direction: column;
+    align-content: space-between;
+}
+
+.single_key_container, .bujo_entry{
+    display: flex;
+    padding-left: 6vw;
+    margin-top: auto;
+    margin-bottom: auto;
+}
+
+.single_key_container img, .bujo_entry img{
+    width: 25px;
+    height:auto;
+    align-self: center;
+}
+
+.single_key_container p, .bujo_entry p{
+    font-size: 20px;
+    padding-left: 2vw;
+}
+
+#indent_key{
+    margin-left: 2vw;
+}
+
+.date_container{
+    width: 80vw;
+    display: flex;
+    justify-content: space-between;
+}
+
+.date{
+    font-weight: normal;
+    text-align: right;
+}
+
+.bujo_entry{
+    background-color: #21212B;
+    width: 74vw;
+    border-radius: 8px;
+    margin-bottom: 2vh;
+}
+
+.bujo_entry_details_container{
+    width:65vw;
+    display: flex;
+    justify-content: space-between;
+}
+
+.entry_title{
+    flex: 6;
+}
+
+.entry_details{
+    flex: 1;
 }
