@@ -1,21 +1,18 @@
 {%extends 'base.html' %}
 {% load static %}
 
-
 {% block title %}Profile{% endblock %}
 
 {% block content %}
-<h1>
-    Profile
-</h1>
+  <h1>Profile</h1>
 
-<div class="profile_container">
+  <div class="profile_container">
     <img class="profile_pic" src="{% static 'images/userpic.png' %}" alt="User's Picture">
 
     <div class='bio_container'>
-        <h3>Kendra</h3>
+      <h3>Kendra</h3>
 
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+      <p>Hi! I'm Kendra, a Clothing Tech student from the Design Institute. I like to dance and bake during my free time. Not sure what I'm gonna do with this bullet journal, but I hope it helps me organize all the things I have to do. I wish the pandemic ends soon. I just wanna go back to school :&#60;</p>
     </div>
-</div>
-s{% endblock %}
+  </div>
+{% endblock %}

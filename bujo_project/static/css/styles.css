@@ -1,5 +1,5 @@
 html{
-    background: #181820 ;
+    background: #181820;
     padding-left:10vw;
     padding-right: 10vw;
 }
@@ -8,7 +8,7 @@ html{
     font-family: 'montserrat';
     src: local('montserrat'),
          url('../static/fonts/Montserrat-Medium.ttf') format("truetype");
-  }
+}
 
 nav{
     position: fixed;
@@ -64,7 +64,7 @@ form{
 form input{
     position:absolute;
     right:35vw;
-    height: 2.5vw;
+    height: 2.8vw;
 }
 
 #id_name{
@@ -74,8 +74,10 @@ form input{
 
 .profile_pic{
     width: 27%;
+    height: auto;
     border-radius: 8px;
 }
+
 .profile_container{
     display: flex;
     padding-top: 3vh;
@@ -87,6 +89,7 @@ form input{
 }
 
 .all_keys_container{
+    position: fixed;
     background-color: #21212B;
     border-radius: 8px;
     width: 80vw;
@@ -112,6 +115,10 @@ form input{
 .single_key_container p, .bujo_entry p{
     font-size: 20px;
     padding-left: 2vw;
+}
+
+#indent_key{
+    margin-left: 2vw;
 }
 
 .date_container{
@@ -145,4 +152,3 @@ form input{
 .entry_details{
     flex: 1;
 }
-

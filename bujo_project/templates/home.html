@@ -1,28 +1,33 @@
 {%extends 'base.html' %}
 {% load static %}
 
-
 {% block title %}Your Bujo{% endblock %}
 
 {% block content %}
-<h1>
-    Your Bullet Journal
-</h1>
+  <h1>Your Bullet Journal</h1>
 
-{% if form  %}
-    <h2>
-        Hello! What is your name?
-    </h2>
+  {{ form.non_field_errors }}
+  {% for field in form %}
+    {% if field.errors %}
+      <p>{{ field.label }} has the following errors:</p>
+      <ul>
+      {% for error in field.errors %}
+        <li>{{ error }}</li>
+      {% endfor %}
+      </ul>
+    {% endif %}
+  {% endfor %}
+
+  {% if form %}
+    <h2>Hello! What is your name?</h2>
     <div class="form_container">
-        <form method="post">
-            {% csrf_token %}
-            {{ form.as_p }}
-            <input type="submit" value="Submit">
-        </form>
+      <form action="/home" method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input type="submit" value="Submit">
+      </form>
     </div>
-{% else %}
-    <h2>
-        Hello, {{ output }}! Today is going to be a great day!
-    </h2>
-{% endif %}
+  {% else %}
+    <h2>Hello, {{ output }}! Today is going to be a great day!</h2>
+  {% endif %}
 {% endblock %}
