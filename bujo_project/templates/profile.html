@@ -10,9 +10,41 @@
     <img class="profile_pic" src="{% static 'images/userpic.png' %}" alt="User's Picture">
 
     <div class='bio_container'>
-      <h3>Kendra</h3>
+      {{ form.non_field_errors }}
+      {% for field in form %}
+        {% if field.errors %}
+          <p>{{ field.label }} has the following errors:</p>
+          <ul>
+          {% for error in field.errors %}
+            <li>{{ error }}</li>
+          {% endfor %}
+          </ul>
+        {% endif %}
+      {% endfor %}
 
-      <p>Hi! I'm Kendra, a Clothing Tech student from the Design Institute. I like to dance and bake during my free time. Not sure what I'm gonna do with this bullet journal, but I hope it helps me organize all the things I have to do. I wish the pandemic ends soon. I just wanna go back to school :&#60;</p>
+      {% if form %}
+      <!-- enc from https://www.youtube.com/watch?v=ygzGr51dbsY -->
+        <form action="/profile" method="post" enctype="multipart/form-data">
+          {% csrf_token %}
+          {{ profile_pic.as_p }}
+          {{ profile_pic.media }}
+          <input type="submit" value="Save">
+        </form>
+      {% else %}
+        <h3>{{ nickname }}</h3>
+        <form method='get' action='#'>
+          <input type="submit" value="Edit1" name="Edit1"/>
+        </form>
+        <p>{{ bio }}</p>
+        <form method='get' action='#'>
+          <input type="submit" value="Edit2" name="Edit2"/>
+        </form>
+        <form method = "post" enctype="multipart/form-data">
+          {% csrf_token %}
+          {{ profile_pic.as_p }}
+          {{ profile_pic.media }}
+        </form>
+      {% endif %}
     </div>
   </div>
 {% endblock %}

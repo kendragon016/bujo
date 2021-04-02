@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block title %}Key{% endblock %}
+
+{% block content %}
+  {% if object_list %}
+    <ul>
+      {% for key in object_list %}
+        <li>
+          <a href="{{ key.get_absolute_url }}">{{ key.key }}</a>
+        </li>
+      {% endfor %}
+    </ul>
+  {% else %}
+    <h1>There are no subjects created yet</h1>
+  {% endif %}
+{% endblock %}

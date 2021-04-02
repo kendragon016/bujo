@@ -6,7 +6,56 @@
 {% block content %}
   <h1>Key</h1>
 
-  <div class="all_keys_container">
+  {{ form.non_field_errors }}
+  {% for field in form %}
+    {% if field.errors %}
+      <p>{{ field.label }} has the following errors:</p>
+      <ul>
+      {% for error in field.errors %}
+        <li>{{ error }}</li>
+      {% endfor %}
+      </ul>
+    {% endif %}
+  {% endfor %}
+
+  <div class="container">
+    {% for key in key_context %}
+      <p>{{ key.key_name }}</p>
+      <p>{{ key.description }}</p>
+    {% endfor %}
+  </div>
+
+  <div class="single_key_container" id="indent_key">
+    <p>from outside{{ key_name }}</p>
+    <p>{{ description }}</p>
+  </div>
+  {% if form %}
+    <!-- <div class="single_key_container" id="indent_key">
+      <p> from if {{ key_name }}</p>
+      <p>{{ description }}</p>
+    </div> -->
+    <div class="form_container">
+      <form action="#" method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input type="submit" value="Add Key" name="Add Key">
+      </form>
+    </div>
+  {% else %}
+    <!-- <div class="single_key_container" id="indent_key">
+      <p>from else {{ key_name }}</p>
+      <p>{{ description }}</p>
+    </div> -->
+    <div class="form_container">
+      <form action="#" method="get">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input type="submit" value="Add Key" name="Add Key">
+      </form>
+    </div>
+  {% endif %}
+
+  <!-- <div class="all_keys_container">
     <div class="single_key_container">
       <img src="{% static 'images/dash.png' %}" alt="dash bullet">
       <p>Notes: things you don't want to forget</p>
@@ -31,5 +80,5 @@
         <img src="{% static 'images/cross.png' %}" alt="dash bullet">
         <p>Task complete</p>
     </div>
-  </div>
+  </div> -->
 {% endblock %}

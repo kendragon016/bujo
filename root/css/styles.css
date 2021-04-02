@@ -64,12 +64,10 @@ form{
 form input{
     position:absolute;
     right:35vw;
-    height: 2.8vw;
 }
 
 #id_name{
     width: 30vw;
-    height: 2vw;
 }
 
 .profile_pic{
@@ -89,11 +87,9 @@ form input{
 }
 
 .all_keys_container{
-    position: fixed;
     background-color: #21212B;
     border-radius: 8px;
     width: 80vw;
-    height: 60vh;
     display: flex;
     flex-direction: column;
     align-content: space-between;
@@ -117,8 +113,8 @@ form input{
     padding-left: 2vw;
 }
 
-#indent_key{
-    margin-left: 2vw;
+#indent_key img{
+    padding-left: 5vw;
 }
 
 .date_container{
