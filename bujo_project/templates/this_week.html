@@ -10,37 +10,50 @@
     <h1 class="date">03.01.MON - 03.07.SUN</h1>
   </div>
 
-  <div class="bujo_entry">
-    <img src="{% static 'images/dot.png' %}" alt="dot bullet">
-    <div><p>workout</p></div>
+  {{ form.non_field_errors }}
+  {% for field in form %}
+    {% if field.errors %}
+      <p>{{ field.label }} has the following errors:</p>
+      <ul>
+      {% for error in field.errors %}
+        <li>{{ error }}</li>
+      {% endfor %}
+      </ul>
+    {% endif %}
+  {% endfor %}
+
+  <div class="container">
+    {% for item in this_week_context %}
+      <p>{{ item.chosen_item_type }}</p>
+      <p>{{ item.item_details }}</p>
+      <a href="{% url 'edit_week_item' item.pk %}"><button type="button">Edit</button></a>
+      <a href="{% url 'delete_week_item' item.pk %}"><button type="button">Delete</button></a>
+      {% if item.chosen_item_type == "Task" %}
+        <form method='post' action='#'>
+          {% csrf_token %}
+          <button type="submit" name="done" value="done">Mark as Done</button>
+        </form>
+      {% endif %}
+    {% endfor %}
   </div>
 
-  <div class="bujo_entry">
-    <img src="{% static 'images/dot.png' %}" alt="dot bullet">
-    <div><p>buy coffee and milk</p></div>
-  </div>
-
-  <div class="bujo_entry">
-    <img src="{% static 'images/dot.png' %}" alt="dot bullet">
-    <div><p>laundry</p></div>
-  </div>
-
-  <div class="bujo_entry">
-    <img src="{% static 'images/circle.png' %}" alt="circle bullet">
-    <div class="bujo_entry_details_container">
-      <div class="entry_title"><p>PAASCU meeting</p></div>
-      <div class="entry_details"><p>03.03</p></div>
-      <div class="entry_details"><p>2PM</p></div>
+  {% if form %}
+    <div class="form_container">
+      <form action="#" method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input type="submit" value="Add Item" name="Add Item">
+      </form>
     </div>
-  </div>
+  {% else %}
+    <div class="form_container">
+      <form action="#" method="get">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input type="submit" value="Add Item" name="Add Item">
+      </form>
+    </div>
+  {% endif %}
 
-  <div class="bujo_entry">
-    <img src="{% static 'images/dash.png' %}" alt="dash bullet">
-    <div><p>30g of coffee is too strong</p></div>
-  </div>
 
-  <div class="bujo_entry">
-    <img src="{% static 'images/dot.png' %}" alt="dot bullet">
-    <div><p>review ethics</p></div>
-  </div>
 {% endblock %}

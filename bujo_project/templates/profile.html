@@ -7,7 +7,8 @@
   <h1>Profile</h1>
 
   <div class="profile_container">
-    <img class="profile_pic" src="{% static 'images/userpic.png' %}" alt="User's Picture">
+    <img class="profile_pic" src="{{ request.user.profile.profile_pic.url }}" alt="User's Picture">
+    <!-- {{profile_pic}} -->
 
     <div class='bio_container'>
       {{ form.non_field_errors }}
@@ -23,21 +24,23 @@
       {% endfor %}
 
       {% if form %}
+      <h1>im a form</h1>
       <!-- enc from https://www.youtube.com/watch?v=ygzGr51dbsY -->
         <form action="/profile" method="post" enctype="multipart/form-data">
           {% csrf_token %}
-          {{ profile_pic.as_p }}
+          {{ form.as_p }}
           {{ profile_pic.media }}
           <input type="submit" value="Save">
         </form>
       {% else %}
+        <h1>not a form</h1>
         <h3>{{ nickname }}</h3>
         <form method='get' action='#'>
-          <input type="submit" value="Edit1" name="Edit1"/>
+          <input type="submit" value="Edit" name="Edit"/>
         </form>
         <p>{{ bio }}</p>
         <form method='get' action='#'>
-          <input type="submit" value="Edit2" name="Edit2"/>
+          <input type="submit" value="Edit" name="Edit"/>
         </form>
         <form method = "post" enctype="multipart/form-data">
           {% csrf_token %}

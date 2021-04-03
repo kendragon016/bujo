@@ -26,14 +26,10 @@
   </div>
 
   <div class="single_key_container" id="indent_key">
-    <p>from outside{{ key_name }}</p>
+    <p>{{ key_name }}</p>
     <p>{{ description }}</p>
   </div>
   {% if form %}
-    <!-- <div class="single_key_container" id="indent_key">
-      <p> from if {{ key_name }}</p>
-      <p>{{ description }}</p>
-    </div> -->
     <div class="form_container">
       <form action="#" method="post">
         {% csrf_token %}
@@ -42,10 +38,6 @@
       </form>
     </div>
   {% else %}
-    <!-- <div class="single_key_container" id="indent_key">
-      <p>from else {{ key_name }}</p>
-      <p>{{ description }}</p>
-    </div> -->
     <div class="form_container">
       <form action="#" method="get">
         {% csrf_token %}

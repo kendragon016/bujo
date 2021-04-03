@@ -1,5 +1,5 @@
 from django import forms
-from .models import ProfileDetails, ProfilePic, Key
+from .models import ProfileDetails, Key, ThisWeekItems, TodayItems
 
 
 class UsernameForm(forms.Form):
@@ -12,7 +12,7 @@ class ProfileDetailsForm(forms.ModelForm):
 
 class ProfilePicForm(forms.ModelForm):
     class Meta:
-        model = ProfilePic
+        model = ProfileDetails
         fields = ['profile_pic']
         labels = {
             "profile_pic": ""
@@ -22,4 +22,15 @@ class KeyForm(forms.ModelForm):
     class Meta:
         model = Key
         fields = ['key_name', 'description']
+
+class ThisWeekForm(forms.ModelForm):
+    class Meta:
+        model = ThisWeekItems
+        fields = ['chosen_item_type', 'item_details']
+
+class TodayForm(forms.ModelForm):
+    class Meta:
+        model = TodayItems
+        fields = ['chosen_item_type', 'item_details']
+
 
