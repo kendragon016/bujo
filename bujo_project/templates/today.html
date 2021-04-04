@@ -5,9 +5,9 @@
 
 {% block content %}
   <div class="date_container">
-    <h1>This Week</h1>
+    <h1>Today</h1>
 
-    <h1 class="date">03.01.MON - 03.07.SUN</h1>
+    <h1 class="date">03.02 TUE</h1>
   </div>
 
   {{ form.non_field_errors }}
@@ -24,36 +24,44 @@
 
   <div class="container">
     {% for item in today_context %}
-      <p>{{ item.chosen_item_type }}</p>
-      <p>{{ item.item_details }}</p>
-      <a href="{% url 'edit_today_item' item.pk %}"><button type="button">Edit</button></a>
-      <a href="{% url 'delete_today_item' item.pk %}"><button type="button">Delete</button></a>
-      {% if item.chosen_item_type == "Task" %}
-        <form method='post' action='#'>
-          {% csrf_token %}
-          <button type="submit" name="done" value="done">Mark as Done</button>
-        </form>
-      {% endif %}
+
+      <div class="bujo_entry">
+        <div class="bujo_entry_details_container">
+          <div class="entry_title"><p>{{ item.chosen_item_type }}</p></div>
+          <div class="entry_details"><p>{{ item.item_details }}</p></div>
+          <div class="entry_button"><a href="{% url 'edit_today_item' item.pk %}"><button type="button">Edit</button></a></div>
+          <div class="entry_button"><a href="{% url 'delete_today_item' item.pk %}"><button type="button">Delete</button></a></div>
+
+          {% if item.chosen_item_type == "Task" %}
+            <div class="entry_button">
+              <form method='post' action='#'>
+                {% csrf_token %}
+                <button type="submit" name="done" value="done">Mark as Done</button>
+              </form>
+            </div>
+          {% else %}
+          <div class="entry_button"></div>
+          {% endif %}
+        </div>
+      </div>
     {% endfor %}
   </div>
 
   {% if form %}
-    <div class="form_container">
-      <form action="#" method="post">
+    <div class="form_container" id="key_submit">
+      <form id="add_key_form" action="#" method="post">
         {% csrf_token %}
         {{ form.as_p }}
         <input type="submit" value="Add Item" name="Add Item">
       </form>
     </div>
   {% else %}
-    <div class="form_container">
-      <form action="#" method="get">
+    <div class="form_container" id="key_submit">
+      <form id="add_key_form" action="#" method="get">
         {% csrf_token %}
         {{ form.as_p }}
         <input type="submit" value="Add Item" name="Add Item">
       </form>
     </div>
   {% endif %}
-
-
 {% endblock %}

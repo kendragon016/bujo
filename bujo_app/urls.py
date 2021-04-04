@@ -7,6 +7,8 @@ from . import views
 urlpatterns = [
     path('home', views.home, name='home'),
     path('profile', views.profile, name='profile'),
+    path('profile/edit/<int:pk>', views.edit_profile, name='edit_profile'),
+    path('profile_pic/edit/<int:pk>', views.edit_pic, name='edit_pic'),
     path('key', views.key, name='key'),
     path('this_week', views.this_week, name='this_week'),
     path('this_week/edit/<int:pk>', views.edit_week_item, name='edit_week_item'),

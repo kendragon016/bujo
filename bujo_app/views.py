@@ -4,8 +4,8 @@ from django.views import View
 from django.views.generic import UpdateView
 from django.views.generic.list import ListView
 
-from .forms import UsernameForm, ProfileDetailsForm, ProfilePicForm, KeyForm, ThisWeekForm, TodayForm
-from .models import ProfileDetails, Key, ThisWeekItems, TodayItems
+from .forms import *
+from .models import *
 
 asked_name = False
 name = None
@@ -37,28 +37,52 @@ def home(request):
 
 
 def profile(request):
-    global nickname, bio, profile_pic
-    profile_pic = ProfilePicForm()
+    global profile_pic
+    form = ProfileDetailsForm()
+    pic_form = ProfilePicForm()
 
-    if request.GET.get('Edit') == 'Edit':
-        print('edit1 button can be heard')
-        form = ProfileDetailsForm()
-        return render(request, "profile.html", {'form': form, 'nickname': nickname, 'bio': bio, 'profile_pic': profile_pic})
-
-    elif request.method == 'POST':
+    if request.method == 'POST':
         form = ProfileDetailsForm(request.POST)
+
         if form.is_valid():
-            print("form is valid")
             form.save()
-            nickname = form.cleaned_data['nickname']
-            bio = form.cleaned_data['bio']
-            return render(request, "profile.html", {'nickname': nickname, 'bio': bio, 'profile_pic': profile_pic})
+            return render(request, "profile.html", {"profile_context": ProfileDetails.objects.all()[:1].get()})
 
-        print("outside of request method is post if")
-        render(request, "profile.html", {'nickname': nickname, 'bio': bio, 'profile_pic': profile_pic})
+        form = ProfileDetailsForm()
+        return render(request, "profile.html", {"profile_context": ProfileDetails.objects.all()[:1].get(), "form": form})
 
-    print("outside of profile")
-    return render(request, "profile.html", {'nickname': nickname, 'bio': bio, 'profile_pic': profile_pic})
+    form = ProfileDetailsForm()
+    return render(request, "profile.html", {"profile_context": ProfileDetails.objects.all()[:1].get(), "pic_form": pic_form})
+
+def edit_profile(request, pk):
+    info = ProfileDetails.objects.get(id=pk)
+    edited_item_form = ProfileDetailsForm(instance=info)
+    pic_form = ProfilePicForm()
+
+    if request.method == "POST":
+        edited_item_form = ProfileDetailsForm(request.POST, instance=info)
+        if edited_item_form.is_valid():
+            edited_item_form.save()
+            return render(request, "profile.html", {"profile_context": ProfileDetails.objects.all()[:1].get(), "pic_form": pic_form})
+
+    return render(request, 'edit_item.html', {'edited_item_form': edited_item_form})
+
+def edit_pic(request, pk):
+    info = ProfileDetails.objects.get(id=pk)
+    edited_item_form = ProfilePicForm(instance=info)
+
+    if request.method == "POST":
+        print('request is a post')
+        edited_item_form = ProfilePicForm(request.POST, request.FILES, instance=info)
+        if edited_item_form.is_valid():
+            print('request is valid')
+            edited_item_form.save()
+            print(edited_item_form)
+            return render(request, "profile.html", {"profile_context": ProfileDetails.objects.all()[:1].get()})
+
+    print('request not a post, from outside edit pic')
+    edited_item_form = ProfilePicForm()
+    return render(request, 'edit_item.html', {'edited_item_form': edited_item_form})
 
 # class KeyListView(View):
 #     model = Key

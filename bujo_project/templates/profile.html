@@ -7,8 +7,10 @@
   <h1>Profile</h1>
 
   <div class="profile_container">
-    <img class="profile_pic" src="{{ request.user.profile.profile_pic.url }}" alt="User's Picture">
-    <!-- {{profile_pic}} -->
+    <div class="profile_pic_container">
+      <img class="profile_pic" src="{{ profile_context.profile_pic.url }}" alt="User's Picture">
+      <a href="{% url 'edit_pic' profile_context.pk %}"><button type="button">Change</button></a>
+    </div>
 
     <div class='bio_container'>
       {{ form.non_field_errors }}
@@ -23,31 +25,16 @@
         {% endif %}
       {% endfor %}
 
-      {% if form %}
-      <h1>im a form</h1>
-      <!-- enc from https://www.youtube.com/watch?v=ygzGr51dbsY -->
-        <form action="/profile" method="post" enctype="multipart/form-data">
-          {% csrf_token %}
-          {{ form.as_p }}
-          {{ profile_pic.media }}
-          <input type="submit" value="Save">
-        </form>
-      {% else %}
-        <h1>not a form</h1>
-        <h3>{{ nickname }}</h3>
-        <form method='get' action='#'>
-          <input type="submit" value="Edit" name="Edit"/>
-        </form>
-        <p>{{ bio }}</p>
-        <form method='get' action='#'>
-          <input type="submit" value="Edit" name="Edit"/>
-        </form>
-        <form method = "post" enctype="multipart/form-data">
-          {% csrf_token %}
-          {{ profile_pic.as_p }}
-          {{ profile_pic.media }}
-        </form>
-      {% endif %}
+      <h3>
+        {{ profile_context.nickname }}
+        <a href="{% url 'edit_profile' profile_context.pk %}"><button type="button">Edit</button></a>
+      </h3>
+      <p>
+        {{ profile_context.bio }}
+        <a href="{% url 'edit_profile' profile_context.pk %}"><button type="button">Edit</button></a>
+      </p>
+
+
     </div>
   </div>
 {% endblock %}

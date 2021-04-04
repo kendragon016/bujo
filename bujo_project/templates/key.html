@@ -18,59 +18,28 @@
     {% endif %}
   {% endfor %}
 
-  <div class="container">
+  <div class="all_keys_container">
     {% for key in key_context %}
-      <p>{{ key.key_name }}</p>
-      <p>{{ key.description }}</p>
+      <p>{{ key.key_name }}: {{ key.description }}</p>
     {% endfor %}
   </div>
 
-  <div class="single_key_container" id="indent_key">
-    <p>{{ key_name }}</p>
-    <p>{{ description }}</p>
-  </div>
   {% if form %}
-    <div class="form_container">
-      <form action="#" method="post">
+    <div class="form_container" id="key_submit">
+      <form id="add_key_form" action="#" method="post">
         {% csrf_token %}
         {{ form.as_p }}
-        <input type="submit" value="Add Key" name="Add Key">
+        <input id="key_submit" type="submit" value="Add Key" name="Add Key">
       </form>
     </div>
   {% else %}
-    <div class="form_container">
-      <form action="#" method="get">
+    <div class="form_container" id="key_submit">
+      <form id="add_key_form" action="#" method="get">
         {% csrf_token %}
         {{ form.as_p }}
-        <input type="submit" value="Add Key" name="Add Key">
+        <input id="key_submit" type="submit" value="Add Key" name="Add Key">
       </form>
     </div>
   {% endif %}
 
-  <!-- <div class="all_keys_container">
-    <div class="single_key_container">
-      <img src="{% static 'images/dash.png' %}" alt="dash bullet">
-      <p>Notes: things you don't want to forget</p>
-    </div>
-
-    <div class="single_key_container">
-        <img src="{% static 'images/circle.png' %}" alt="dash bullet">
-        <p>Events: noteworthy moments in time</p>
-    </div>
-
-    <div class="single_key_container">
-        <img src="{% static 'images/dot.png' %}" alt="dash bullet">
-        <p>Tasks: things you have to do</p>
-    </div>
-
-    <div class="single_key_container" id="indent_key">
-        <img src="{% static 'images/dot.png' %}" alt="dash bullet">
-        <p>Task incomplete</p>
-    </div>
-
-    <div class="single_key_container" id="indent_key">
-        <img src="{% static 'images/cross.png' %}" alt="dash bullet">
-        <p>Task complete</p>
-    </div>
-  </div> -->
 {% endblock %}

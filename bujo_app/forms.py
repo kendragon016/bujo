@@ -1,5 +1,5 @@
 from django import forms
-from .models import ProfileDetails, Key, ThisWeekItems, TodayItems
+from .models import *
 
 
 class UsernameForm(forms.Form):

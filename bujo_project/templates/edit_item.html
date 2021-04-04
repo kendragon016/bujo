@@ -1,12 +1,12 @@
 {%extends 'base.html' %}
 {% load static %}
 
-{% block title %}Edit Item{% endblock %}
+{% block title %}Edit{% endblock %}
 
 {% block content %}
-  <h1>Edit Item</h1>
+  <h1>Edit</h1>
   <div class="form-group">
-    <form method="post">
+    <form method="post" enctype="multipart/form-data">
       {% csrf_token %}
       {{ edited_item_form.as_p }}
       <input type="submit" value="Update"/>
