@@ -117,6 +117,9 @@ def key(request):
     global key_name, description
 
     form = KeyForm()
+    key_context = Key.objects.all()
+    all_keys = {'key_context': key_context}
+    keys_and_form = {'key_context': key_context, 'form': form}
 
     if request.method == 'POST':
         form = KeyForm(request.POST)
