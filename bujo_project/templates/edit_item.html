@@ -6,10 +6,10 @@
 {% block content %}
   <h1>Edit</h1>
   <div class="form-group">
-    <form method="post" enctype="multipart/form-data">
+    <form id="edit_form" method="post" enctype="multipart/form-data">
       {% csrf_token %}
       {{ edited_item_form.as_p }}
-      <input type="submit" value="Update"/>
+      <input id="edit_submit" type="submit" value="Update"/>
     </form>
   </div>
 {% endblock %}

@@ -1,0 +1,28 @@
+html{
+    background: #181820;
+    padding-left:10vw;
+    padding-right: 10vw;
+}
+
+@font-face {
+    font-family: 'montserrat';
+    src: local('montserrat'),
+         url('../static/fonts/Montserrat-Medium.ttf') format("truetype");
+}
+
+h1, p{
+    font-family: "montserrat";
+    color: #D9D9DA;
+    text-align: center;
+}
+
+h1{
+    font-weight: bold;
+    font-size: 32px;
+    padding-top: 16vh;
+}
+
+p{
+    font-size: 16px;
+    line-height: 24px;
+}

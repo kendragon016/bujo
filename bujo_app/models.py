@@ -27,6 +27,7 @@ class Key(models.Model):
         return f'{self.key_name} {self.description}'
 
 class ThisWeekItems(models.Model):
+    # https://www.youtube.com/watch?v=u7MJxv_P2Pk&t=615s for dropdown fields
     item_types = [
         ('Task', 'Task'),
         ('Event', 'Event'),

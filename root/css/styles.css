@@ -66,6 +66,11 @@ form input{
     right:35vw;
 }
 
+#add_key_form{
+    text-align: left;
+    padding-left: 30vw;
+}
+
 #id_name{
     width: 30vw;
 }
@@ -84,6 +89,15 @@ form input{
 .profile_pic_container{
     display:flex;
     flex-direction: column;
+}
+
+.profile_pic_container img{
+    width: 20vw;
+    height: auto;
+}
+
+.profile_pic_container a{
+    text-align: center;
 }
 
 .bio_container{
@@ -107,19 +121,13 @@ form input{
     margin-bottom: auto;
 }
 
-.single_key_container img, .bujo_entry img{
-    width: 25px;
-    height:auto;
-    align-self: center;
+#key_submit{
+    margin-top: 30px;
 }
 
 .all_keys_container p, .bujo_entry p{
     font-size: 20px;
     padding-left: 2vw;
-}
-
-#indent_key img{
-    padding-left: 5vw;
 }
 
 .date_container{
@@ -141,15 +149,21 @@ form input{
 }
 
 .bujo_entry_details_container{
-    width:65vw;
+    width:70vw;
     display: flex;
     justify-content: space-between;
 }
 
 .entry_title{
-    flex: 6;
+    flex: 2;
+    font-weight: bold;
 }
 
 .entry_details{
+    flex: 4;
+}
+
+.entry_button{
     flex: 1;
+    align-self: center;
 }
