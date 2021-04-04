@@ -34,10 +34,9 @@
 
           {% if item.chosen_item_type == "Task" %}
             <div class="entry_button">
-              <form method='post' action='#'>
-                {% csrf_token %}
-                <button type="submit" name="done" value="done">Mark as Done</button>
-              </form>
+              <a href="{% url 'done_today_task' item.pk %}">
+                <button type="button">Mark as Done</button>
+              </a>
             </div>
           {% else %}
           <div class="entry_button"></div>

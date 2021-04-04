@@ -84,9 +84,6 @@ def edit_pic(request, pk):
     edited_item_form = ProfilePicForm()
     return render(request, 'edit_item.html', {'edited_item_form': edited_item_form})
 
-# class KeyListView(View):
-#     model = Key
-
 def key(request):
     global key_name, description
 
@@ -152,11 +149,10 @@ def delete_week_item(request, pk):
 
     return render(request, 'delete_week_item.html', {'item': item})
 
-
-# def done_task(request, pk):
-#     task = ThisWeekItems.objects.get(id=pk)
-#     task.done = True
-#     task.save()
+def done_week_task(request, pk):
+    item = ThisWeekItems.objects.filter(id=pk)
+    item.update(chosen_item_type="Task Done")
+    return redirect("/this_week")
 
 def today(request):
     if request.method == 'POST':
@@ -196,3 +192,8 @@ def delete_today_item(request, pk):
         return redirect("/today")
 
     return render(request, 'delete_today_item.html', {'item': item})
+
+def done_today_task(request, pk):
+    item = TodayItems.objects.filter(id=pk)
+    item.update(chosen_item_type="Task Done")
+    return redirect("/today")

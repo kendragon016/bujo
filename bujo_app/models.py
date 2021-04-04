@@ -46,7 +46,7 @@ class TodayItems(models.Model):
     item_types = [
         ('Task', 'Task'),
         ('Event', 'Event'),
-        ('Note', 'Note')
+        ('Note', 'Note'),
     ]
     chosen_item_type = models.CharField(max_length=10, choices=item_types)
     item_details = models.CharField(max_length=100)
