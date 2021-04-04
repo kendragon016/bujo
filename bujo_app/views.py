@@ -15,7 +15,6 @@ key_name = ""
 description = ""
 chosen_item_type = ""
 item_details = ""
-profile_pic = None
 
 
 def home(request):
@@ -37,22 +36,34 @@ def home(request):
 
 
 def profile(request):
-    global profile_pic
     form = ProfileDetailsForm()
     pic_form = ProfilePicForm()
 
     if request.method == 'POST':
         form = ProfileDetailsForm(request.POST)
-
         if form.is_valid():
             form.save()
-            return render(request, "profile.html", {"profile_context": ProfileDetails.objects.all()[:1].get()})
-
+            return render(
+                request,
+                "profile.html",
+                {"profile_context": ProfileDetails.objects.all()[:1].get()}
+            )
         form = ProfileDetailsForm()
-        return render(request, "profile.html", {"profile_context": ProfileDetails.objects.all()[:1].get(), "form": form})
+        return render(
+            request,
+            "profile.html",
+            {"profile_context": ProfileDetails.objects.all()[:1].get(),
+             "form": form}
+        )
 
     form = ProfileDetailsForm()
-    return render(request, "profile.html", {"profile_context": ProfileDetails.objects.all()[:1].get(), "pic_form": pic_form})
+    return render(
+        request,
+        "profile.html",
+        {"profile_context": ProfileDetails.objects.all()[:1].get(),
+         "pic_form": pic_form}
+    )
+
 
 def edit_profile(request, pk):
     info = ProfileDetails.objects.get(id=pk)
@@ -63,34 +74,49 @@ def edit_profile(request, pk):
         edited_item_form = ProfileDetailsForm(request.POST, instance=info)
         if edited_item_form.is_valid():
             edited_item_form.save()
-            return render(request, "profile.html", {"profile_context": ProfileDetails.objects.all()[:1].get(), "pic_form": pic_form})
+            return render(
+                request,
+                "profile.html",
+                {"profile_context": ProfileDetails.objects.all()[:1].get(),
+                 "pic_form": pic_form}
+            )
 
-    return render(request, 'edit_item.html', {'edited_item_form': edited_item_form})
+    return render(
+        request,
+        'edit_item.html',
+        {'edited_item_form': edited_item_form}
+    )
+
 
 def edit_pic(request, pk):
     info = ProfileDetails.objects.get(id=pk)
     edited_item_form = ProfilePicForm(instance=info)
 
     if request.method == "POST":
-        print('request is a post')
-        edited_item_form = ProfilePicForm(request.POST, request.FILES, instance=info)
+        edited_item_form = ProfilePicForm(
+            request.POST, request.FILES,
+            instance=info
+        )
         if edited_item_form.is_valid():
-            print('request is valid')
             edited_item_form.save()
-            print(edited_item_form)
-            return render(request, "profile.html", {"profile_context": ProfileDetails.objects.all()[:1].get()})
+            return render(
+                request,
+                "profile.html",
+                {"profile_context": ProfileDetails.objects.all()[:1].get()}
+            )
 
-    print('request not a post, from outside edit pic')
     edited_item_form = ProfilePicForm()
-    return render(request, 'edit_item.html', {'edited_item_form': edited_item_form})
+    return render(
+        request,
+        'edit_item.html',
+        {'edited_item_form': edited_item_form}
+    )
+
 
 def key(request):
     global key_name, description
 
     form = KeyForm()
-    key_context = Key.objects.all()
-    all_keys = {'key_context': key_context}
-    keys_and_form = {'key_context': key_context, 'form': form}
 
     if request.method == 'POST':
         form = KeyForm(request.POST)
@@ -117,17 +143,36 @@ def this_week(request):
 
         if form.is_valid():
             form.save()
-            return render(request, "this_week.html", {"this_week_context": ThisWeekItems.objects.all()})
+            return render(
+                request,
+                "this_week.html",
+                {"this_week_context": ThisWeekItems.objects.all()}
+            )
 
         form = ThisWeekForm()
-        return render(request, "this_week.html", {"this_week_context": ThisWeekItems.objects.all(), "form": form})
+        return render(
+            request,
+            "this_week.html",
+            {"this_week_context": ThisWeekItems.objects.all(),
+             "form": form}
+        )
 
     elif request.GET.get('Add Item') == 'Add Item':
         form = ThisWeekForm()
-        return render(request, "this_week.html", {"this_week_context": ThisWeekItems.objects.all(), "form": form})
+        return render(
+            request,
+            "this_week.html",
+            {"this_week_context": ThisWeekItems.objects.all(),
+             "form": form}
+        )
 
     form = ThisWeekForm()
-    return render(request, "this_week.html", {"this_week_context": ThisWeekItems.objects.all()})
+    return render(
+        request,
+        "this_week.html",
+        {"this_week_context": ThisWeekItems.objects.all()}
+    )
+
 
 def edit_week_item(request, pk):
     item = ThisWeekItems.objects.get(id=pk)
@@ -139,20 +184,28 @@ def edit_week_item(request, pk):
             edited_item_form.save()
             return redirect("/this_week")
 
-    return render(request, 'edit_item.html', {'edited_item_form': edited_item_form})
+    return render(
+        request,
+        'edit_item.html',
+        {'edited_item_form': edited_item_form}
+    )
+
 
 def delete_week_item(request, pk):
     item = ThisWeekItems.objects.get(id=pk)
+
     if request.method == "POST":
         item.delete()
         return redirect("/this_week")
 
     return render(request, 'delete_week_item.html', {'item': item})
 
+
 def done_week_task(request, pk):
     item = ThisWeekItems.objects.filter(id=pk)
     item.update(chosen_item_type="Task Done")
     return redirect("/this_week")
+
 
 def today(request):
     if request.method == 'POST':
@@ -160,17 +213,35 @@ def today(request):
 
         if form.is_valid():
             form.save()
-            return render(request, "today.html", {"today_context": TodayItems.objects.all()})
+            return render(
+                request,
+                "today.html",
+                {"today_context": TodayItems.objects.all()}
+            )
 
         form = TodayForm()
-        return render(request, "today.html", {"today_context": TodayItems.objects.all(), "form": form})
+        return render(
+            request,
+            "today.html",
+            {"today_context": TodayItems.objects.all(), "form": form}
+        )
 
     elif request.GET.get('Add Item') == 'Add Item':
         form = TodayForm()
-        return render(request, "today.html", {"today_context": TodayItems.objects.all(), "form": form})
+        return render(
+            request,
+            "today.html",
+            {"today_context": TodayItems.objects.all(),
+             "form": form}
+        )
 
     form = TodayForm()
-    return render(request, "today.html", {"today_context": TodayItems.objects.all()})
+    return render(
+        request,
+        "today.html",
+        {"today_context": TodayItems.objects.all()}
+    )
+
 
 def edit_today_item(request, pk):
     item = TodayItems.objects.get(id=pk)
@@ -182,16 +253,23 @@ def edit_today_item(request, pk):
             edited_item_form.save()
             return redirect("/today")
 
-    return render(request, 'edit_item.html', {'edited_item_form': edited_item_form})
+    return render(
+        request,
+        'edit_item.html',
+        {'edited_item_form': edited_item_form}
+    )
+
 
 def delete_today_item(request, pk):
     item = TodayItems.objects.get(id=pk)
+
     if request.method == "POST":
         print("delete item post")
         item.delete()
         return redirect("/today")
 
     return render(request, 'delete_today_item.html', {'item': item})
+
 
 def done_today_task(request, pk):
     item = TodayItems.objects.filter(id=pk)
