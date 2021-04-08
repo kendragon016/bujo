@@ -9,7 +9,6 @@ from .models import *
 
 asked_name = False
 name = None
-first_log = True
 key_name = ''
 description = ''
 chosen_item_type = ''
@@ -38,18 +37,15 @@ def home(request):
 
 
 def profile(request):
-    global first_log
     form = ProfileDetailsForm()
 
-    if first_log:
+    if ProfileDetails.objects.count() == 0:
         obj = ProfileDetails.objects.create(
             nickname='Nickname: Your Nickname',
             bio='Bio: A short description about yourself.',
             profile_pic="images/defaultpic.png"
         )
         obj.save()
-        first_log = False
-        print(ProfileDetails.objects.all()[:1].get())
         return render(
             request,
             'profile.html',
