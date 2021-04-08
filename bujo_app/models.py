@@ -7,7 +7,7 @@ class ProfileDetails(models.Model):
     nickname = models.CharField(max_length=100)
     bio = models.CharField(max_length=200)
     # models.ImageField from https://www.youtube.com/watch?v=ygzGr51dbsY&t=932s
-    profile_pic = models.ImageField(default="/static/images/userpic.png",
+    profile_pic = models.ImageField(default="images/defaultpic.png",
                                     upload_to='images/')
 
 

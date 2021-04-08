@@ -4,12 +4,6 @@ html{
     padding-right: 10vw;
 }
 
-@font-face {
-    font-family: 'montserrat';
-    src: local('montserrat'),
-         url('../static/fonts/Montserrat-Medium.ttf') format("truetype");
-}
-
 nav{
     position: fixed;
     left: 0;

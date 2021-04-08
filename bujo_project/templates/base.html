@@ -6,7 +6,14 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width">
   <title>{% block title %}Your Bujo{% endblock %}</title>
-  <link rel="stylesheet" href="{% static 'css/styles.css' %}" type="text/css">
+  <style type="text/css">
+    @font-face {
+      font-family: 'montserrat';
+      src: url("{% static 'fonts/montserrat.ttf' %}");
+    }
+  </style>
+
+  <link rel="stylesheet" href="{% static 'css/styles.css' %}">
 </head>
 <body>
   {% include 'navbar.html' %}

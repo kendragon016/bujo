@@ -4,12 +4,6 @@ html{
     padding-right: 10vw;
 }
 
-@font-face {
-    font-family: 'montserrat';
-    src: local('montserrat'),
-         url('../static/fonts/Montserrat-Medium.ttf') format("truetype");
-}
-
 nav{
     position: fixed;
     left: 0;
@@ -166,4 +160,29 @@ form input{
 .entry_button{
     flex: 1;
     align-self: center;
+}
+
+#delete_form{
+    text-align: left;
+}
+
+#no_delete{
+    width: 10vw;
+}
+
+#yes_delete{
+    left: 25vw;
+}
+
+#yes_delete, #edit_submit{
+    padding-left: 4.5vw;
+    padding-right: 4.5vw;
+}
+
+#edit_submit{
+    left: 10.5vw;
+}
+
+#edit_form{
+    text-align: left;
 }
