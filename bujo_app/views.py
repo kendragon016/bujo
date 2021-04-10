@@ -78,13 +78,13 @@ def profile(request):
 
 def edit_profile(request, pk):
     info = ProfileDetails.objects.get(id=pk)
-    edited_item_form = ProfileDetailsForm(instance=info)
+    form = ProfileDetailsForm(instance=info)
     pic_form = ProfilePicForm()
 
     if request.method == 'POST':
-        edited_item_form = ProfileDetailsForm(request.POST, instance=info)
-        if edited_item_form.is_valid():
-            edited_item_form.save()
+        form = ProfileDetailsForm(request.POST, instance=info)
+        if form.is_valid():
+            form.save()
             return render(
                 request,
                 'profile.html',
@@ -95,32 +95,32 @@ def edit_profile(request, pk):
     return render(
         request,
         'edit_item.html',
-        {'edited_item_form': edited_item_form}
+        {'form': form}
     )
 
 
 def edit_pic(request, pk):
     info = ProfileDetails.objects.get(id=pk)
-    edited_item_form = ProfilePicForm(instance=info)
+    form = ProfilePicForm(instance=info)
 
     if request.method == 'POST':
-        edited_item_form = ProfilePicForm(
+        form = ProfilePicForm(
             request.POST, request.FILES,
             instance=info
         )
-        if edited_item_form.is_valid():
-            edited_item_form.save()
+        if form.is_valid():
+            form.save()
             return render(
                 request,
                 'profile.html',
                 {'profile_context': ProfileDetails.objects.all()[:1].get()}
             )
 
-    edited_item_form = ProfilePicForm()
+    form = ProfilePicForm()
     return render(
         request,
         'edit_item.html',
-        {'edited_item_form': edited_item_form}
+        {'form': form}
     )
 
 
@@ -188,39 +188,6 @@ def this_week(request):
     )
 
 
-def edit_week_item(request, pk):
-    item = ThisWeekItems.objects.get(id=pk)
-    edited_item_form = ThisWeekForm(instance=item)
-
-    if request.method == 'POST':
-        edited_item_form = ThisWeekForm(request.POST, instance=item)
-        if edited_item_form.is_valid():
-            edited_item_form.save()
-            return redirect('/this_week')
-
-    return render(
-        request,
-        'edit_item.html',
-        {'edited_item_form': edited_item_form}
-    )
-
-
-def delete_week_item(request, pk):
-    item = ThisWeekItems.objects.get(id=pk)
-
-    if request.method == 'POST':
-        item.delete()
-        return redirect('/this_week')
-
-    return render(request, 'delete_week_item.html', {'item': item})
-
-
-def done_week_task(request, pk):
-    item = ThisWeekItems.objects.filter(id=pk)
-    item.update(chosen_item_type='Task Done')
-    return redirect('/this_week')
-
-
 def today(request):
     if request.method == 'POST':
         form = TodayForm(request.POST)
@@ -257,35 +224,65 @@ def today(request):
     )
 
 
-def edit_today_item(request, pk):
-    item = TodayItems.objects.get(id=pk)
-    edited_item_form = TodayForm(instance=item)
+def edit_item(request, pk):
+    page = request.path.rsplit('/', 3)[-3]
 
-    if request.method == 'POST':
-        edited_item_form = TodayForm(request.POST, instance=item)
-        if edited_item_form.is_valid():
-            edited_item_form.save()
-            return redirect('/today')
+    if page == 'this_week':
+        item = ThisWeekItems.objects.get(id=pk)
+        form = ThisWeekForm(instance=item)
+
+        if request.method == 'POST':
+            form = ThisWeekForm(request.POST, instance=item)
+            if form.is_valid():
+                form.save()
+                return redirect('/this_week')
+
+    elif page == 'today':
+        item = TodayItems.objects.get(id=pk)
+        form = TodayForm(instance=item)
+
+        if request.method == 'POST':
+            form = TodayForm(request.POST, instance=item)
+            if form.is_valid():
+                form.save()
+                return redirect('/today')
 
     return render(
         request,
         'edit_item.html',
-        {'edited_item_form': edited_item_form}
+        {'form': form}
     )
 
 
-def delete_today_item(request, pk):
-    item = TodayItems.objects.get(id=pk)
+def delete_item(request, pk):
+    page = request.path.rsplit('/', 3)[-3]
 
-    if request.method == 'POST':
-        print('delete item post')
-        item.delete()
+    if page == 'this_week':
+        item = ThisWeekItems.objects.get(id=pk)
+
+        if request.method == 'POST':
+            item.delete()
+            return redirect('/this_week')
+
+    elif page == 'today':
+        item = TodayItems.objects.get(id=pk)
+
+        if request.method == 'POST':
+            item.delete()
+            return redirect('/today')
+
+    return render(request, 'delete_item.html', {'item': item})
+
+
+def done_task(request, pk):
+    page = request.path.rsplit('/', 3)[-3]
+
+    if page == 'this_week':
+        item = ThisWeekItems.objects.filter(id=pk)
+        item.update(chosen_item_type='Task Done')
+        return redirect('/this_week')
+
+    elif page == 'today':
+        item = TodayItems.objects.filter(id=pk)
+        item.update(chosen_item_type='Task Done')
         return redirect('/today')
-
-    return render(request, 'delete_today_item.html', {'item': item})
-
-
-def done_today_task(request, pk):
-    item = TodayItems.objects.filter(id=pk)
-    item.update(chosen_item_type='Task Done')
-    return redirect('/today')
